@@ -1,0 +1,118 @@
+Analisis
+
+Pernyataan :
+       nama klien adalah heri. heri memiliki sebuah pekerjaan sebagai pengusaha tekstil di kota bintang. dan ingin memiliki sistem yang dapat mengelola laporan atau merekap / mencatat semua akuntan (termasuk gaji pegawai, masalah keuangan dalam perusahaan tersebut) , transaksi, dan laporan setiap produksi, distribusi dan pengiriman (delivery).  juga terdapat beberapa divisi dalam perusahaan tersebut, yakni : 
+A. divisi produksi = penanggung jawab : 1 orang / pegawai dan juga diperlukan setiap minggu harus melapor ke atasan.
+B. divisi distribusi = penanggung jawab : 1 orang / pegawai dan juga diperlukan setiap minggu harus melapor ke atasan.
+C. divisi pengiriman = penanggung jawab : 1 orang / pegawai dan juga diperlukan setiap minggu harus melapor ke atasan.
+
+* setiap divisi berbeda wadah (website). 
+
+Hasil analisi : 
+       Untuk menyelesaikan studi kasus ini, dapat dirancang dengan sistem manajemen yang terdiri dari beberapa komponen ini menjadi terpisah, termasuk sistem akuntansi, sistem manajemen produksi, sistem manajemen distribusi, dan sistem manajemen pengiriman. Selain itu, setiap divisi akan memiliki wadah yang berbeda. Berikut adalah rincian sistem yang dapat dipertimbangkan:
+
+1. Sistem Akuntansi:
+Sistem ini akan membantu mengelola laporan keuangan dan gaji pegawai. Fitur-fitur yang dapat dimasukkan dalam sistem akuntansi termasuk:
+* Pencatatan transaksi keuangan perusahaan, seperti pemasukan dan pengeluaran.
+* Pembuatan laporan keuangan, seperti laporan laba rugi, neraca, dan arus kas.
+* Penggajian pegawai, termasuk pemrosesan dan perhitungan gaji.
+* Pencatatan pembayaran kepada pemasok dan pelanggan.
+* Pembuatan laporan pajak.
+
+2. Sistem Manajemen Produksi:
+Sistem ini akan membantu mengelola proses produksi, melacak inventaris bahan baku, dan mencatat laporan produksi mingguan. Fitur-fitur yang dapat dimasukkan dalam sistem manajemen produksi termasuk:
+* Pencatatan inventaris bahan baku dan penggunaannya dalam produksi.
+* Pencatatan pesanan produksi dari pelanggan.
+* Pemantauan status produksi setiap pesanan.
+* Pencatatan laporan produksi mingguan, termasuk jumlah produksi, kualitas, dan masalah yang terjadi.
+* Pemantauan waktu produksi dan efisiensi produksi.
+
+3. Sistem Manajemen Distribusi:
+Sistem ini akan membantu mengelola proses distribusi produk dari pabrik ke gudang atau toko. Fitur-fitur yang dapat dimasukkan dalam sistem manajemen distribusi termasuk:
+* Pencatatan pesanan dari pelanggan dan pengaturan jadwal pengiriman.
+* Pemantauan status pengiriman setiap pesanan.
+* Pencatatan inventaris produk di gudang atau toko.
+* Pencatatan laporan distribusi mingguan, termasuk jumlah produk yang didistribusikan, lokasi pengiriman, dan waktu pengiriman.
+
+4. Sistem Manajemen Pengiriman:
+Sistem ini akan membantu mengelola proses pengiriman produk dari gudang atau toko ke pelanggan. Fitur-fitur yang dapat dimasukkan dalam sistem manajemen pengiriman termasuk:
+* Pencatatan pesanan pengiriman dari gudang atau toko.
+* Pemantauan status pengiriman setiap pesanan.
+* Pencatatan laporan pengiriman mingguan, termasuk jumlah produk yang dikirimkan, tujuan pengiriman, dan waktu pengiriman.
+
+Setiap divisi dapat memiliki wadah (database) masing-masing yang terhubung dengan sistem inti untuk mengakses data dan melaporkan aktivitas pekerja pada masing-masing divisi. Website ini nantinya dapat menyediakan antarmuka yang dapat disesuaikan pada setiap divisi, termasuk formulir pengisian laporan, tampilan status pesanan, dan laporan yang relevan. Selain itu, penting untuk memastikan bahwa sistem ini memiliki keamanan yang memadai untuk melindungi data sensitif perusahaan dan hanya diakses oleh pihak yang berwenang.
+
+
+
+Database : 
+1. Database "Production":
+> Tabel "ProductionOrders":
+* order_id (primary key)
+* employee_id (foreign key ke tabel Employees)
+* order_date
+* status (sedang diproses, selesai, dibatalkan, dll.)
+*  description
+* product_id (foreign key ke tabel Products)
+* quantity
+
+> Tabel "Products":
+* product_id (primary key)
+* product_name
+* product_description
+* unit_price
+* stock_quantity
+
+2. Database "Distribution":
+> Tabel "DistributionOrders":
+* order_id (primary key)
+* employee_id (foreign key ke tabel Employees)
+* order_date
+* status (sedang diproses, selesai, dibatalkan, dll.)
+* description
+* product_id (foreign key ke tabel Products)
+* quantity
+
+3. Database "Delivery":
+> Tabel "DeliveryOrders":
+* order_id (primary key)
+* employee_id (foreign key ke tabel Employees)
+* order_date
+* status (sedang dikirim, selesai, dibatalkan, dll.)
+* description
+* product_id (foreign key ke tabel Products)
+* quantity
+* customer_id (foreign key ke tabel Customers)
+* delivery_address
+
+
+4. Database "Accounting":
+> Tabel "FinancialTransactions":
+* transaction_id (primary key)
+* employee_id (foreign key ke tabel Employees)
+* transaction_date
+* transaction_type (pemasukan, pengeluaran, gaji, dll.)
+* amount
+* description
+
+> Tabel "Employees":
+* employee_id (primary key)
+* user_id (foreign key ke tabel Users)
+* name
+* position
+* division
+
+> Tabel "Users":
+* user_id (primary key)
+* username
+* password
+* role (divisi pengguna: produksi, distribusi, pengiriman, akuntansi, admin, dll.)
+
+> Tabel "Customers":
+* customer_id (primary key)
+* customer_name
+* customer_address
+* customer_contact
+
+
+
+
